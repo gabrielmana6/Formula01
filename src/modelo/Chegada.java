@@ -3,9 +3,9 @@ package modelo;
 public class Chegada {
 	private int prova;
 	private int colocacao;
-	private String piloto;
+	private Piloto piloto;
 	
-	public Chegada (int prova, int colocacao, String piloto) {
+	public Chegada (int prova, int colocacao, Piloto piloto) {
 		this.prova = prova;
 		this.colocacao = colocacao;
 		this.piloto = piloto;
@@ -27,12 +27,17 @@ public class Chegada {
 		this.colocacao = colocacao;
 	}
 
-	public String getPiloto() {
+	public Piloto getPiloto() {
 		return piloto;
 	}
 
-	public void setPiloto(String piloto) {
+	public void setPiloto(Piloto piloto) {
 		this.piloto = piloto;
+	}
+
+	@Override
+	public String toString() {
+		return "Chegada [prova=" + prova + ", colocacao=" + colocacao + ", piloto=" + piloto + "]";
 	}
 	
 }

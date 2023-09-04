@@ -2,6 +2,7 @@ package aplicacao;
 
 import com.db4o.ObjectContainer;
 
+import modelo.Chegada;
 import modelo.Piloto;
 import modelo.Prova;
 
@@ -12,7 +13,7 @@ public class Cadastrar {
 		try {
 			manager = Util.conectarBanco();
 			
-			System.out.println("Cadastrando...");
+			System.out.println("Cadastrar...");
 			
 			//Cadastra pilotos
 			Piloto piloto1 = new Piloto("Lewis Hamilton", "Mercedes-AMG Petronas Formula One Team");
@@ -46,6 +47,19 @@ public class Cadastrar {
 			id = Util.gerarIdProva();
 			Prova prova2 = new Prova(id);
 			manager.store(prova2);
+			manager.commit();
+			
+			//Cadastra chegada
+			Chegada chegada1 = new Chegada(prova1.getId(), 1, piloto2);
+			manager.store(chegada1);
+			manager.commit();
+			
+			Chegada chegada2 = new Chegada(prova1.getId(), 1, piloto3);
+			manager.store(chegada2);
+			manager.commit();
+			
+			Chegada chegada3 = new Chegada(prova1.getId(), 1, piloto1);
+			manager.store(chegada3);
 			manager.commit();
 			
 		} catch(Exception e) {
