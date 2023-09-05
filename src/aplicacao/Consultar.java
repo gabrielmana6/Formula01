@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.db4o.ObjectContainer;
 import com.db4o.query.Query;
 
+import modelo.Chegada;
 import modelo.Piloto;
 
 public class Consultar {
@@ -40,18 +41,29 @@ public class Consultar {
 	        } else {
 	        	System.out.println("Não existem pilotos dessa escuderia.");
 	        }
-	        scanner.close();
 	        System.out.println("----------------------------------------");
 
 	        
 	        //Quais as colocacoes do piloto de nome X
 			System.out.println("Quais as colocacoes do piloto de nome X");
+			scanner = new Scanner(System.in);
 			
+			
+			System.out.println("Digite o nome do piloto: ");
+			texto = scanner.nextLine();
+			Query q2 = manager.query();
+			q2.constrain(Chegada.class);
+			q2.descend("piloto").descend("nome").constrain(texto);
+			List<Chegada> chegadas = q2.execute();
+			for(Chegada chegada: chegadas) {
+				System.out.println(chegada.getColocacao());
+			}
 			
 			
 			//Quais as provas com mais de N chegadas
 			System.out.println("----------------------------------------");
 			System.out.println("Quais as provas com mais de N chegadas");
+			
 			
 			
 		} catch (Exception e) {

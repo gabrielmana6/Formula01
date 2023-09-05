@@ -37,7 +37,7 @@ public class Deletar {
 			//deletar prova
 			Query q2 = manager.query();
 			q2.constrain(Prova.class);
-			q2.descend("id").constrain(3);
+			q2.descend("id").constrain(2);
 			List<Prova> resultados2 = q2.execute(); 
 
 			if (resultados2.size() > 0) {
@@ -246,13 +246,8 @@ public class Deletar {
 	    if (!resultados.isEmpty()) {
 	        for (Chegada chegada : resultados) {
 	            Piloto piloto = chegada.getPiloto(); //recebe a referencia ao piloto
-
-	            System.out.println(chegada);
-	            System.out.println(piloto);
 	            
 	            if (piloto != null && piloto.getNome().equals(nomePiloto)) { // compara o nome do piloto ao parametro
-	            	System.out.println(piloto.getNome());
-	            	System.out.println(nomePiloto);
 	            	chegada.setPiloto(null); 
 	            	
 	            	manager.ext().store(chegada);
@@ -271,14 +266,8 @@ public class Deletar {
 	    return resposta;
 	}
 	
-	
-	
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		
 		new Deletar();
 		
 		
@@ -311,8 +300,6 @@ public class Deletar {
 		    //manager = Util.conectarBanco();
 		    //String resultado6 = deletarReferenciaAoPiloto(manager, "Valtteri Bottas");
 		    //System.out.println(resultado6);
-								
-			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

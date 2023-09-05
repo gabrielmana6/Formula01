@@ -22,10 +22,6 @@ public class Prova {
 	public void addListaDeChegada(Chegada chegada) {
 		this.listaDeChegada.add(chegada);
 	}
-	
-	public void sortListaDeChegada(Chegada chegada) {
-		
-	}
 
 	public ArrayList<Chegada> getListaDeChegada() {
 		return listaDeChegada;

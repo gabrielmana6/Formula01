@@ -34,7 +34,8 @@ public class Alterar {
 			//Adiciona chegadas na prova de id1
 			Query q2 = manager.query();
 			q2.constrain(Chegada.class);
-			q2.descend("prova").constrain(1);
+			System.out.println();
+			q2.descend("prova").descend("id").constrain(1);
 			List<Chegada> chegadas = q2.execute();
 			
 			Query q3 = manager.query();
@@ -54,7 +55,7 @@ public class Alterar {
 			//Adiciona chegadas na prova de id 2
 			Query q4 = manager.query();
 			q4.constrain(Chegada.class);
-			q4.descend("prova").constrain(2);
+			q4.descend("prova").descend("id").constrain(2);
 			chegadas = q4.execute();
 			
 			Query q5 = manager.query();

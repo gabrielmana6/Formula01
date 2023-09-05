@@ -1,22 +1,24 @@
 package modelo;
 
 public class Chegada {
-	private int prova;
 	private int colocacao;
+	
+	private Prova prova;
 	private Piloto piloto;
 	
-	public Chegada (int prova, int colocacao, Piloto piloto) {
+	public Chegada (Prova prova, int colocacao, Piloto piloto) {
 		this.prova = prova;
 		this.colocacao = colocacao;
 		this.piloto = piloto;
 	}
 
-	public int getProva() {
+	public Prova getProva() {
 		return prova;
 	}
 
-	public void setProva(int prova) {
+	public void setProva(Prova prova) {
 		this.prova = prova;
+		prova.addListaDeChegada(this);
 	}
 
 	public int getColocacao() {
@@ -37,7 +39,7 @@ public class Chegada {
 
 	@Override
 	public String toString() {
-		return "Chegada [prova=" + prova + ", colocacao=" + colocacao + ", piloto=" + piloto + "]";
+		return "Chegada [prova=" + prova.getId() + ", colocacao=" + colocacao + ", piloto=" + piloto + "]";
 	}
 	
 }
