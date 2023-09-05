@@ -32,7 +32,7 @@ public class Cadastrar {
 			manager.store(piloto4);
 			manager.commit();
 			
-			Piloto piloto5 = new Piloto("Sergio Perez ", "Red Bull Racing Honda");
+			Piloto piloto5 = new Piloto("Sergio Perez", "Red Bull Racing Honda");
 			manager.store(piloto5);
 			manager.commit();
 			
@@ -50,7 +50,7 @@ public class Cadastrar {
 			manager.commit();
 			
 			
-			//Cadastra chegada
+			//Cadastra chegada prova1
 			Chegada chegada1 = new Chegada(prova1.getId(), 1, piloto2);
 			manager.store(chegada1);
 			manager.commit();
@@ -61,6 +61,15 @@ public class Cadastrar {
 			
 			Chegada chegada3 = new Chegada(prova1.getId(), 3, piloto1);
 			manager.store(chegada3);
+			manager.commit();
+
+			//Cadastra chegada prova2
+			chegada1 = new Chegada(prova2.getId(), 1, piloto4);
+			manager.store(chegada1);
+			manager.commit();
+			
+			chegada2 = new Chegada(prova2.getId(), 2, piloto5);
+			manager.store(chegada2);
 			manager.commit();
 			
 		} catch(Exception e) {
