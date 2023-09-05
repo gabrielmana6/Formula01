@@ -50,7 +50,7 @@ public class Listar {
 		Util.desconectar();
 	}
 	
-	
+
 	public static void main(String[] args) {
 		new Listar();
 	}

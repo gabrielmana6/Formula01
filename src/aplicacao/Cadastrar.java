@@ -49,16 +49,17 @@ public class Cadastrar {
 			manager.store(prova2);
 			manager.commit();
 			
+			
 			//Cadastra chegada
 			Chegada chegada1 = new Chegada(prova1.getId(), 1, piloto2);
 			manager.store(chegada1);
 			manager.commit();
 			
-			Chegada chegada2 = new Chegada(prova1.getId(), 1, piloto3);
+			Chegada chegada2 = new Chegada(prova1.getId(), 2, piloto3);
 			manager.store(chegada2);
 			manager.commit();
 			
-			Chegada chegada3 = new Chegada(prova1.getId(), 1, piloto1);
+			Chegada chegada3 = new Chegada(prova1.getId(), 3, piloto1);
 			manager.store(chegada3);
 			manager.commit();
 			
