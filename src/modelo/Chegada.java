@@ -10,6 +10,8 @@ public class Chegada {
 		this.prova = prova;
 		this.colocacao = colocacao;
 		this.piloto = piloto;
+		
+		prova.addListaDeChegada(this);
 	}
 
 	public Prova getProva() {

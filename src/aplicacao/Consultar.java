@@ -41,10 +41,10 @@ public class Consultar {
 	        } else {
 	        	System.out.println("Não existem pilotos dessa escuderia.");
 	        }
-	        System.out.println("----------------------------------------");
 
 	        
 	        //Quais as colocacoes do piloto de nome X
+	        System.out.println("----------------------------------------");
 			System.out.println("Quais as colocacoes do piloto de nome X");
 			scanner = new Scanner(System.in);
 			
@@ -55,8 +55,12 @@ public class Consultar {
 			q2.constrain(Chegada.class);
 			q2.descend("piloto").descend("nome").constrain(texto);
 			List<Chegada> chegadas = q2.execute();
-			for(Chegada chegada: chegadas) {
-				System.out.println(chegada.getColocacao());
+			if(chegadas.size() > 0) {
+				for(Chegada chegada: chegadas) {
+					System.out.println(chegada.getColocacao());				
+				}
+			} else {
+				System.out.println("Não existem colocacoes para esse piloto");
 			}
 			
 			
@@ -64,6 +68,10 @@ public class Consultar {
 			System.out.println("----------------------------------------");
 			System.out.println("Quais as provas com mais de N chegadas");
 			
+			scanner = new Scanner(System.in);
+			
+			System.out.println("Digite o numero de chegadas");
+			texto = scanner.nextLine();
 			
 			
 		} catch (Exception e) {
