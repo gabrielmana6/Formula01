@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.db4o.ObjectContainer;
+import com.db4o.query.Candidate;
+import com.db4o.query.Evaluation;
 import com.db4o.query.Query;
 
 import modelo.Chegada;
 import modelo.Piloto;
+import modelo.Prova;
 
 public class Consultar {
 	protected ObjectContainer manager;
@@ -25,8 +28,6 @@ public class Consultar {
 
 	        System.out.print("Digite o nome da escuderia: ");
 	        String texto = scanner.nextLine();
-
-	        System.out.println("Você digitou: " + texto);
 	        
 	        Query q1 = manager.query();
 	        q1.constrain(Piloto.class);
@@ -44,7 +45,7 @@ public class Consultar {
 
 	        
 	        //Quais as colocacoes do piloto de nome X
-	        System.out.println("----------------------------------------");
+	        System.out.println("\n----------------------------------------");
 			System.out.println("Quais as colocacoes do piloto de nome X");
 			scanner = new Scanner(System.in);
 			
@@ -65,14 +66,26 @@ public class Consultar {
 			
 			
 			//Quais as provas com mais de N chegadas
-			System.out.println("----------------------------------------");
+			System.out.println("\n----------------------------------------");
 			System.out.println("Quais as provas com mais de N chegadas");
 			
 			scanner = new Scanner(System.in);
+			int num_chegadas;
 			
-			System.out.println("Digite o numero de chegadas");
-			texto = scanner.nextLine();
+			System.out.println("Digite o numero de chegadas: ");
+			num_chegadas = scanner.nextInt();
 			
+			Query q3 = manager.query();
+			q3.constrain(Prova.class);
+			q3.constrain(new Filtro1(num_chegadas));
+			List<Prova> provas = q3.execute();
+			if (provas.size() > 0) {
+				for(Prova prova: provas) {
+					System.out.println(prova);
+				}
+			} else {
+				System.out.println("Não existem provas com numero maior de chegadas");
+			}
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -83,5 +96,21 @@ public class Consultar {
 	
 	public static void main(String[] args) {
 		new Consultar();
+	}
+}
+
+class Filtro1 implements Evaluation{
+	private int num_chegadas;
+	
+	public Filtro1(int num_chegadas) {
+		this.num_chegadas = num_chegadas;
+	}
+
+	public void evaluate(Candidate candidate) {
+		Prova prova = (Prova) candidate.getObject();
+		if(prova.getListaDeChegada().size() > num_chegadas)
+			candidate.include(true);
+		else
+			candidate.include(false);
 	}
 }
