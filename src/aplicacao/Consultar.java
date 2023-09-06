@@ -24,10 +24,10 @@ public class Consultar {
 
 			//Quais os pilotos da escuderia X
 			System.out.println("Quais os pilotos da escuderia X");
-			Scanner scanner = new Scanner(System.in);
+			Scanner scanner1 = new Scanner(System.in);
 
 	        System.out.print("Digite o nome da escuderia: ");
-	        String texto = scanner.nextLine();
+	        String texto = scanner1.nextLine();
 	        
 	        Query q1 = manager.query();
 	        q1.constrain(Piloto.class);
@@ -43,15 +43,15 @@ public class Consultar {
 	        	System.out.println("Não existem pilotos dessa escuderia.");
 	        }
 
-	        
+	        scanner1.close();
 	        //Quais as colocacoes do piloto de nome X
 	        System.out.println("\n----------------------------------------");
 			System.out.println("Quais as colocacoes do piloto de nome X");
-			scanner = new Scanner(System.in);
+			Scanner scanner2 = new Scanner(System.in);
 			
 			
 			System.out.println("Digite o nome do piloto: ");
-			texto = scanner.nextLine();
+			texto = scanner2.nextLine();
 			Query q2 = manager.query();
 			q2.constrain(Chegada.class);
 			q2.descend("piloto").descend("nome").constrain(texto);
@@ -64,16 +64,16 @@ public class Consultar {
 				System.out.println("Não existem colocacoes para esse piloto");
 			}
 			
-			
+			scanner2.close();
 			//Quais as provas com mais de N chegadas
 			System.out.println("\n----------------------------------------");
 			System.out.println("Quais as provas com mais de N chegadas");
 			
-			scanner = new Scanner(System.in);
+			Scanner scanner3 = new Scanner(System.in);
 			int num_chegadas;
 			
 			System.out.println("Digite o numero de chegadas: ");
-			num_chegadas = scanner.nextInt();
+			num_chegadas = scanner3.nextInt();
 			
 			Query q3 = manager.query();
 			q3.constrain(Prova.class);
@@ -86,6 +86,8 @@ public class Consultar {
 			} else {
 				System.out.println("Não existem provas com numero maior de chegadas");
 			}
+			
+			scanner3.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

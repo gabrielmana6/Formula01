@@ -31,6 +31,37 @@ public class Alterar {
 				manager.commit();
 			}
 			
+			//Alterar prova de uma chegada. id da prova 2 para 1. 
+			Query q2 = manager.query();
+			q2.constrain(Chegada.class);
+			q2.descend("prova").descend("id").constrain(2);
+			q2.descend("piloto").descend("nome").constrain("Sergio Perez");
+			List<Chegada> chegadas = q2.execute();
+			
+			Query q3 = manager.query();
+			q3.constrain(Prova.class);
+			q3.descend("id");
+			List<Prova> provas = q3.execute();
+			
+			if(chegadas.size() > 0 && provas.size() > 0) {
+				Chegada chegada = chegadas.get(0);
+				
+				for(Prova prova: provas) {
+					
+					if(prova.getId() == 2) {
+						prova.rmvListaDeChegada(chegada);
+					}
+					if(prova.getId() == 1){
+						chegada.setProva(prova);
+					}
+					
+					manager.store(prova);
+					manager.store(chegada);
+					manager.commit();
+				}
+			}
+		
+			
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

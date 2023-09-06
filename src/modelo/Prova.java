@@ -22,6 +22,10 @@ public class Prova {
 	public void addListaDeChegada(Chegada chegada) {
 		this.listaDeChegada.add(chegada);
 	}
+	
+	public void rmvListaDeChegada(Chegada chegada) {
+		this.listaDeChegada.remove(chegada);
+	}
 
 	public ArrayList<Chegada> getListaDeChegada() {
 		return listaDeChegada;
